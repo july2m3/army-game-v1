@@ -31,7 +31,7 @@
   align-items: center;
 }
 
-.select-character__options p {
+.select-character__options p span {
   margin: 40px;
   font-size: 4rem;
 }
@@ -41,10 +41,8 @@
 }
 
 .select-character__canvas {
-  border: 1px solid black;
 }
 
 .select-character__character-info {
-  border: solid 1px black;
   height: 20px;
 }

@@ -1,52 +1,55 @@
 import React from 'react';
 
-import spearman from './sprites/spearman.png';
 import Sprite from './game-functions/Sprite';
+import spearman from './sprites/spearman.png';
 
 interface IProps {}
 interface IState {
-  gridCoordinates: any[];
+  bufferBackground: CanvasRenderingContext2D | null;
   fps: number;
   fpsInterval: any;
   now: any;
   then: any;
   elapsed: any;
-  currentTile: any;
   myCanvas: any;
   currentCharacter: Sprite;
-  //   gridImage: any;
   mouseX: any;
   mouseY: any;
 }
 
 class SelectCharacter extends React.Component<IProps, IState> {
-  // const SelectCharacter = (props: any) => {
   constructor(props: IProps) {
     super(props);
     this.state = {
+      bufferBackground: document.createElement('canvas').getContext('2d'),
       currentCharacter: new Sprite(spearman, 100, 100, 1),
       fps: 5,
       mouseX: 100,
       mouseY: 100,
       myCanvas: React.createRef(),
       fpsInterval: null,
-      gridCoordinates: [],
       now: Date.now(),
       then: Date.now(),
       elapsed: null,
-      currentTile: { x: 100, y: 100 },
     };
   }
 
   componentDidMount({ fps } = this.state) {
+    this.setupGame();
     this.setState({ fpsInterval: 1000 / fps });
     this.gameLoop();
   }
 
+  setupGame = ({ myCanvas, bufferBackground } = this.state) => {
+    bufferBackground!.canvas.height = 400;
+    bufferBackground!.canvas.width = 400;
+    myCanvas.current.height = window.innerHeight * 0.4;
+    myCanvas.current.width = window.innerWidth * 0.4;
+  };
+
   gameLoop = () => {
     const { fpsInterval, elapsed, currentCharacter, myCanvas } = this.state;
     const ctx = myCanvas.current.getContext('2d');
-
     window.requestAnimationFrame(this.gameLoop);
 
     // calc elapsed time since last loop
@@ -55,10 +58,9 @@ class SelectCharacter extends React.Component<IProps, IState> {
 
     // if enough time has elapsed, draw the next frame
     if (elapsed > fpsInterval) {
-      // Get ready for next frame by setting then=now, but also adjust for your
-      // specified fpsInterval not being a multiple of RAF's interval (16.7ms)
-      currentCharacter.drawStrip(ctx, 100, 100);
-
+      let currentCharacterY = myCanvas.current.height / 2 - 100;
+      let currentCharacterX = myCanvas.current.width / 2 - 100;
+      currentCharacter.drawStrip(ctx, currentCharacterX, currentCharacterY);
       this.setState((prevState) => ({
         then: prevState.now - (prevState.elapsed % prevState.fpsInterval),
       }));
