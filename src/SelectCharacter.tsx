@@ -2,6 +2,7 @@ import React from 'react';
 
 import Sprite from './game-functions/Sprite';
 import spearman from './sprites/spearman.png';
+import soldierInfo form './soldier-info.json';
 
 interface IProps {}
 interface IState {
