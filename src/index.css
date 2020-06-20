@@ -14,7 +14,7 @@
 
 .select-character__title {
   font-size: 4rem;
-  margin-top: 5vh;
+  margin-top: 10vh;
 }
 
 .select-character__sub-title {
@@ -40,9 +40,25 @@
   transform: scale(1.1);
 }
 
-.select-character__canvas {
+.select-character__character-info {
+  margin-top: 50px;
+  min-height: 20px;
 }
 
-.select-character__character-info {
-  height: 20px;
+.select-character__character-info ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+}
+
+.select-character__character-info li {
+  text-decoration: none;
+  font-size: 2rem;
+  margin: 1rem;
+}
+
+@media screen and (max-width: 900px) {
+  .select-character__options {
+    margin-top: 100px;
+  }
 }
