@@ -58,12 +58,12 @@ class ChooseCharacter extends React.Component<IProps, IState> {
 
   render({ currentCharacter } = this.state) {
     return (
-      <main className="select-character__main">
-        <h1 className="select-character__title">Army Game v1</h1>
-        <h2 className="select-character__sub-title">Choose your soldier</h2>
-        <div className="select-character__options">
-          <p className="select-character__left">
-            <span role="img" aria-label="left arrow">
+      <main className='character__main'>
+        <h1 className='character__title'>Army Game v1</h1>
+        <h2 className='character__sub-title'>Choose your soldier</h2>
+        <div className='character__options'>
+          <p className='character__left'>
+            <span role='img' aria-label='left arrow'>
               ⬅️
             </span>
           </p>
@@ -73,35 +73,37 @@ class ChooseCharacter extends React.Component<IProps, IState> {
               transition: { duration: 1 },
             }}
             src={spearmanImage}
-            alt="none"
-            animate="visible"
-            initial="hidden"
+            alt='none'
+            animate='visible'
+            initial='hidden'
             variants={this.variants}
           />
-          <p className="select-character__right">
-            <span role="img" aria-label="right arrow">
+          <p className='character__right'>
+            <span role='img' aria-label='right arrow'>
               ➡️
             </span>
           </p>
         </div>
-        <div className="select-character__character-info">
+        <div className='character__character-info'>
           <ul>
             <li>Name: {currentCharacter.name}</li>
             <li>
-              {currentCharacter.hp} HP{' '}
-              <span role="img" aria-label="HP">
+              {currentCharacter.hp}
+              HP{' '}
+              <span role='img' aria-label='HP'>
                 🛡
               </span>
             </li>
             <li>
-              {currentCharacter.attack} attack{' '}
-              <span role="img" aria-label="Attack">
+              {currentCharacter.attack}
+              attack{' '}
+              <span role='img' aria-label='Attack'>
                 ⚔️
               </span>
             </li>
             <li>
               {currentCharacter.accuracy}% Accuracy
-              <span role="img" aria-label="Accuracy">
+              <span role='img' aria-label='Accuracy'>
                 🎯
               </span>
             </li>
