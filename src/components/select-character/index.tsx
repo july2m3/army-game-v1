@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Sprite from './game-functions/Sprite';
-import spearman from './sprites/spearman.png';
+import Sprite from '../../game-functions/Sprite';
+import spearman from '../../sprites/spearman.png';
 // import soldierInfo from './soldier-info.json';
 
 interface IProps {}
@@ -70,26 +70,26 @@ class SelectCharacter extends React.Component<IProps, IState> {
 
   render() {
     return (
-      <main className='select-character__main'>
-        <h1 className='select-character__title'>Army Game v1</h1>
-        <h2 className='select-character__sub-title'>Choose your soldier</h2>
-        <div className='select-character__options'>
-          <p className='select-character__left'>
-            <span role='img' aria-label='left arrow'>
+      <main className="select-character__main">
+        <h1 className="select-character__title">Army Game v1</h1>
+        <h2 className="select-character__sub-title">Choose your soldier</h2>
+        <div className="select-character__options">
+          <p className="select-character__left">
+            <span role="img" aria-label="left arrow">
               ⬅️
             </span>
           </p>
           <canvas
-            className='select-character__canvas'
+            className="select-character__canvas"
             ref={this.state.myCanvas}
           />
-          <p className='select-character__right'>
-            <span role='img' aria-label='right arrow'>
+          <p className="select-character__right">
+            <span role="img" aria-label="right arrow">
               ➡️
             </span>
           </p>
         </div>
-        <div className='select-character__character-info'>
+        <div className="select-character__character-info">
           <ul>
             <li>1000 HP 🛡</li>
             <li>100 attack ⚔️</li>

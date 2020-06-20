@@ -1,7 +1,7 @@
 import React from 'react';
 
 // import SelectCharacter from './SelectCharacter';
-import ChooseCharacter from './ChooseCharacter';
+import ChooseCharacter from './components/choose-character';
 
 // class App extends React.Component {
 // render() {
