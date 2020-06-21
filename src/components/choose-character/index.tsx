@@ -18,6 +18,7 @@ interface IProps {}
 interface IState {
   currentCharacter: any;
   soldiers: any;
+  characterChoosen: boolean;
 }
 
 class ChooseCharacter extends React.Component<IProps, IState> {
@@ -31,19 +32,12 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     this.state = {
       currentCharacter: {},
       soldiers: {},
+      characterChoosen: false,
     };
   }
 
   componentDidMount() {
     const { soldiers } = soldierInfo;
-
-    // update all soldiers to include image src
-    // soldiers.forEach((soldier: Object, index: number) => {
-    //   console.log(soldier, index);
-    //   soldier.src = 'paul';
-    //   // soldiers[index].src= 'paul';
-    // });
-    // console.log(soldiers);
 
     this.setState(() => ({
       soldiers,
@@ -55,41 +49,47 @@ class ChooseCharacter extends React.Component<IProps, IState> {
   }
 
   handleCharacterClick = (characterClicked: any) => {
-    // console.log(`Character Clicked ${characterClicked}`);
     switch (characterClicked) {
       case 'brute':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[0],
+          characterChoosen: true,
         }));
         break;
       case 'heavy infantry':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[1],
+          characterChoosen: true,
         }));
         break;
       case 'knight':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[2],
+          characterChoosen: true,
         }));
         break;
       case 'light infantry':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[3],
+          characterChoosen: true,
         }));
         break;
       case 'pikeman':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[4],
+          characterChoosen: true,
         }));
         break;
       case 'scout':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[5],
+          characterChoosen: true,
         }));
         break;
       case 'spearman':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[6],
+          characterChoosen: true,
         }));
         break;
       default:
@@ -97,43 +97,47 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     }
   };
 
-  render({ currentCharacter } = this.state) {
+  render({ currentCharacter, soldiers, characterChoosen } = this.state) {
     return (
       <main className='character__main'>
         <h1 className='character__title'>Army Game v1</h1>
         <h2 className='character__sub-title'>Choose your soldier</h2>
-        <div className='character__options'>
-          <CharacterList
-            variants={this.state}
-            handleClick={this.handleCharacterClick}
-            characters={this.state.soldiers}
-          />
-        </div>
-        <div className='character__character-info'>
-          <ul>
-            <li>Name: {currentCharacter.name}</li>
-            <li>
-              {currentCharacter.hp}
-              HP{' '}
-              <span role='img' aria-label='HP'>
-                🛡
-              </span>
-            </li>
-            <li>
-              {currentCharacter.attack}
-              attack{' '}
-              <span role='img' aria-label='Attack'>
-                ⚔️
-              </span>
-            </li>
-            <li>
-              {currentCharacter.accuracy}% Accuracy
-              <span role='img' aria-label='Accuracy'>
-                🎯
-              </span>
-            </li>
-          </ul>
-        </div>
+        {!characterChoosen && (
+          <>
+            <div className='character__options'>
+              <CharacterList
+                variants={this.state}
+                handleClick={this.handleCharacterClick}
+                characters={soldiers}
+              />
+            </div>
+            <div className='character__character-info'>
+              <ul>
+                <li>Name: {currentCharacter.name}</li>
+                <li>
+                  {currentCharacter.hp}
+                  HP{' '}
+                  <span role='img' aria-label='HP'>
+                    🛡
+                  </span>
+                </li>
+                <li>
+                  {currentCharacter.attack}
+                  attack{' '}
+                  <span role='img' aria-label='Attack'>
+                    ⚔️
+                  </span>
+                </li>
+                <li>
+                  {currentCharacter.accuracy}% Accuracy
+                  <span role='img' aria-label='Accuracy'>
+                    🎯
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </>
+        )}
       </main>
     );
   }
