@@ -1,8 +1,8 @@
 import React from 'react';
 
-import { motion } from 'framer-motion';
+// import { motion } from 'framer-motion';
 
-import spearmanImage from '../../sprites/spearman.png';
+// import spearmanImage from '../../sprites/spearman.png';
 // import bruteImage from '../../sprites/brute.png';
 // import heavyInfantryImage from '../../sprites/heavy-infantry.png';
 // import knightImage from '../../sprites/knight.png';
@@ -10,6 +10,9 @@ import spearmanImage from '../../sprites/spearman.png';
 // import pikemanImage from '../../sprites/pikeman.png';
 
 import soldierInfo from '../../soldier-info.json';
+
+// import Character from './Character';
+import CharacterList from './CharacterList';
 
 interface IProps {}
 interface IState {
@@ -32,28 +35,66 @@ class ChooseCharacter extends React.Component<IProps, IState> {
   }
 
   componentDidMount() {
-    // const soldiers = Object.create(soldierInfo);
-    const soldiers = soldierInfo;
+    const { soldiers } = soldierInfo;
 
-    // for (const [key: any, value: any] of Object.entries(soldiers)) {
-    // console.log(key, value);
-    // soldiers.soldiers[key].src = this.linkSoldierNameToImg(soldiers.name);
-    // }
-
+    // update all soldiers to include image src
+    // soldiers.forEach((soldier: Object, index: number) => {
+    //   console.log(soldier, index);
+    //   soldier.src = 'paul';
+    //   // soldiers[index].src= 'paul';
+    // });
     // console.log(soldiers);
-    // soldiers.soldiers[0].src = 'hell';
 
     this.setState(() => ({
       soldiers,
     }));
 
     this.setState((prevState) => ({
-      currentCharacter: prevState.soldiers.soldiers[6],
+      currentCharacter: prevState.soldiers[6],
     }));
   }
 
-  linkSoldierNameToImg = (name: any) => {
-    return spearmanImage;
+  handleCharacterClick = (characterClicked: any) => {
+    // console.log(`Character Clicked ${characterClicked}`);
+    switch (characterClicked) {
+      case 'brute':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[0],
+        }));
+        break;
+      case 'heavy infantry':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[1],
+        }));
+        break;
+      case 'knight':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[2],
+        }));
+        break;
+      case 'light infantry':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[3],
+        }));
+        break;
+      case 'pikeman':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[4],
+        }));
+        break;
+      case 'scout':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[5],
+        }));
+        break;
+      case 'spearman':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[6],
+        }));
+        break;
+      default:
+        break;
+    }
   };
 
   render({ currentCharacter } = this.state) {
@@ -62,27 +103,11 @@ class ChooseCharacter extends React.Component<IProps, IState> {
         <h1 className='character__title'>Army Game v1</h1>
         <h2 className='character__sub-title'>Choose your soldier</h2>
         <div className='character__options'>
-          <p className='character__left'>
-            <span role='img' aria-label='left arrow'>
-              ⬅️
-            </span>
-          </p>
-          <motion.img
-            whileHover={{
-              scale: 1.2,
-              transition: { duration: 1 },
-            }}
-            src={spearmanImage}
-            alt='none'
-            animate='visible'
-            initial='hidden'
-            variants={this.variants}
+          <CharacterList
+            variants={this.state}
+            handleClick={this.handleCharacterClick}
+            characters={this.state.soldiers}
           />
-          <p className='character__right'>
-            <span role='img' aria-label='right arrow'>
-              ➡️
-            </span>
-          </p>
         </div>
         <div className='character__character-info'>
           <ul>
