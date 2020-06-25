@@ -6,8 +6,10 @@ const Character = (props: any) => {
   return (
     <motion.img
       whileHover={{
-        scale: 1.2,
-        transition: { duration: 1 },
+        // rotate: -360,
+        // scale: 1.2,
+        scaleX: -1, // flips image
+        transition: { duration: 0.1 },
       }}
       src={characterImage}
       alt='none'

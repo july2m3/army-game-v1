@@ -1,55 +1,24 @@
+/* eslint-disable jsx-quotes */
 import React from 'react';
-import Character from './Character';
+import { v4 as uuid } from 'uuid';
 
-import spearmanImage from '../../sprites/spearman.png';
-import bruteImage from '../../sprites/brute.png';
-import heavyInfantryImage from '../../sprites/heavy-infantry.png';
-import knightImage from '../../sprites/knight.png';
-import lightInfantryImage from '../../sprites/light-infantry.png';
-import pikemanImage from '../../sprites/pikeman.png';
+import Character from './Character';
+import characters from './characters';
 
 const CharacterList = (props: any) => {
   const { variants, handleClick } = props;
-  return (
-    <>
-      <Character
-        handleClick={handleClick}
-        ariants={variants}
-        characterImage={spearmanImage}
-        currentCharacter={'spearman'}
-      />
-      <Character
-        handleClick={handleClick}
-        variants={variants}
-        characterImage={bruteImage}
-        currentCharacter={'brute'}
-      />
-      <Character
-        handleClick={handleClick}
-        variants={variants}
-        characterImage={heavyInfantryImage}
-        currentCharacter={'heavy infantry'}
-      />
-      <Character
-        handleClick={handleClick}
-        variants={variants}
-        characterImage={lightInfantryImage}
-        currentCharacter={'light infantry'}
-      />
-      <Character
-        handleClick={handleClick}
-        variants={variants}
-        characterImage={knightImage}
-        currentCharacter={'knight'}
-      />
-      <Character
-        handleClick={handleClick}
-        variants={variants}
-        characterImage={pikemanImage}
-        currentCharacter={'pikeman'}
-      />
-    </>
-  );
+  const tempArray = Array.from(Array(7).keys());
+  const myArray = tempArray.map((i: any) => (
+    <Character
+      key={uuid()}
+      handleClick={handleClick}
+      variants={variants}
+      characterImage={characters[i].characterImage}
+      currentCharacter={characters[i].name}
+    />
+  ));
+
+  return <ul>{myArray}</ul>;
 };
 
 export default CharacterList;
