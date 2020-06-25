@@ -2,6 +2,9 @@ import React from 'react';
 
 import soldierInfo from '../../soldier-info.json';
 import CharacterList from './CharacterList';
+import CharacterInfo from './CharacterInfo';
+
+import './style.scss';
 
 interface IProps {}
 interface IState {
@@ -44,12 +47,7 @@ class ChooseCharacter extends React.Component<IProps, IState> {
   }
 
   handleCharacterClick = (characterClicked: any) => {
-    // const randomEnemyNumber = Math.floor(Math.random() * 6);
-    // this.setState((prevState) => ({
-    //   enemyCharacter: prevState.soldiers[randomEnemyNumber],
-    // }));
-    console.log('here');
-    console.log(this.state.enemyCharacter);
+    // e.preventDefault();
 
     switch (characterClicked) {
       case 'Brute':
@@ -99,11 +97,21 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     }
   };
 
-  getRandomEnemy = () => {};
+  getRandomEnemy = () => {
+    // let randomEnemyNumber = 2;
+  };
+
+  ddd = (e: any) => {
+    const { currentCharacter, enemyCharacter } = this.state;
+    // e.preventDefault();
+    console.log(
+      `Right now, The battle rages on between ${currentCharacter.name} and ${enemyCharacter.name} `,
+    );
+  };
 
   render({ currentCharacter, soldiers, characterChoosen } = this.state) {
     return (
-      <main className="character__main">
+      <main className="character">
         <h1 className="character__title">Army Game v1</h1>
         <h2 className="character__sub-title">Choose your soldier</h2>
         {characterChoosen && (
@@ -115,33 +123,16 @@ class ChooseCharacter extends React.Component<IProps, IState> {
                 characters={soldiers}
               />
             </div>
-            <div className="character__character-info">
-              <ul>
-                <li>Name: {currentCharacter.name}</li>
-                <li>
-                  {currentCharacter.hp}
-                  HP{' '}
-                  <span role="img" aria-label="HP">
-                    🛡
-                  </span>
-                </li>
-                <li>
-                  {currentCharacter.attack}
-                  attack{' '}
-                  <span role="img" aria-label="Attack">
-                    ⚔️
-                  </span>
-                </li>
-                <li>
-                  {currentCharacter.accuracy}% Accuracy
-                  <span role="img" aria-label="Accuracy">
-                    🎯
-                  </span>
-                </li>
-              </ul>
-            </div>
+            <CharacterInfo currentCharacter={currentCharacter} />
           </>
         )}
+        <button
+          type="button"
+          className="character__select-character"
+          onClick={this.ddd}
+        >
+          Hello
+        </button>
       </main>
     );
   }
