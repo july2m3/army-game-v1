@@ -92,6 +92,18 @@ class ChooseCharacter extends React.Component<IProps, IState> {
           characterChoosen: true,
         }));
         break;
+      case 'Assassin':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[7],
+          characterChoosen: true,
+        }));
+        break;
+      case 'Archer':
+        this.setState((prevState) => ({
+          currentCharacter: prevState.soldiers[8],
+          characterChoosen: true,
+        }));
+        break;
       default:
         break;
     }

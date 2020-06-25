@@ -7,7 +7,7 @@ import characters from './characters';
 
 const CharacterList = (props: any) => {
   const { variants, handleClick } = props;
-  const tempArray = Array.from(Array(7).keys());
+  const tempArray = Array.from(Array(characters.length).keys());
   const myArray = tempArray.map((i: any) => (
     <Character
       key={uuid()}

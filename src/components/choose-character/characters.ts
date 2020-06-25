@@ -5,6 +5,8 @@ import knightImage from '../../sprites/knight.png';
 import lightInfantryImage from '../../sprites/light-infantry.png';
 import pikemanImage from '../../sprites/pikeman.png';
 import scoutImage from '../../sprites/scout.png';
+import archerImage from '../../sprites/archer.png';
+import assassinImage from '../../sprites/assassin.png';
 
 const characters = [
   {
@@ -34,6 +36,14 @@ const characters = [
   {
     name: 'Scout',
     characterImage: scoutImage,
+  },
+  {
+    name: 'Archer',
+    characterImage: archerImage,
+  },
+  {
+    name: 'Assassin',
+    characterImage: assassinImage,
   },
 ];
 
