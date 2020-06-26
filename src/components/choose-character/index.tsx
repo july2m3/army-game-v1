@@ -133,7 +133,7 @@ class ChooseCharacter extends React.Component<IProps, IState> {
           className="character__select-character"
           onClick={this.ddd}
         >
-          Hello
+          Choose Character
         </button>
       </main>
     );
