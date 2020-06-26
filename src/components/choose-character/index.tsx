@@ -6,7 +6,9 @@ import CharacterInfo from './CharacterInfo';
 
 import './style.scss';
 
-interface IProps {}
+interface IProps {
+  handlePlayerChoice: any;
+}
 interface IState {
   currentCharacter: any;
   enemyCharacter: any;
@@ -25,7 +27,7 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     this.state = {
       currentCharacter: {},
       soldiers: {},
-      characterChoosen: true,
+      characterChoosen: false,
       enemyCharacter: {},
     };
   }
@@ -53,55 +55,46 @@ class ChooseCharacter extends React.Component<IProps, IState> {
       case 'Brute':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[0],
-          characterChoosen: true,
         }));
         break;
       case 'Heavy Infantry':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[1],
-          characterChoosen: true,
         }));
         break;
       case 'Knight':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[2],
-          characterChoosen: true,
         }));
         break;
       case 'Light Infantry':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[3],
-          characterChoosen: true,
         }));
         break;
       case 'Pikeman':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[4],
-          characterChoosen: true,
         }));
         break;
       case 'Scout':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[5],
-          characterChoosen: true,
         }));
         break;
       case 'Spearman':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[6],
-          characterChoosen: true,
         }));
         break;
       case 'Assassin':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[7],
-          characterChoosen: true,
         }));
         break;
       case 'Archer':
         this.setState((prevState) => ({
           currentCharacter: prevState.soldiers[8],
-          characterChoosen: true,
         }));
         break;
       default:
@@ -113,31 +106,30 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     // let randomEnemyNumber = 2;
   };
 
-  ddd = (e: any) => {
+  ddd = () => {
     const { currentCharacter, enemyCharacter } = this.state;
-    // e.preventDefault();
-    console.log(
-      `Right now, The battle rages on between ${currentCharacter.name} and ${enemyCharacter.name} `,
-    );
+    const { handlePlayerChoice } = this.props;
+    handlePlayerChoice(currentCharacter, enemyCharacter);
+    this.setState(() => ({ characterChoosen: true }));
   };
 
   render({ currentCharacter, soldiers, characterChoosen } = this.state) {
+    if (characterChoosen) {
+      return null;
+    }
+
     return (
       <main className="character">
         <h1 className="character__title">Army Game v1</h1>
         <h2 className="character__sub-title">Choose your soldier</h2>
-        {characterChoosen && (
-          <>
-            <div className="character__options">
-              <CharacterList
-                variants={this.state}
-                handleClick={this.handleCharacterClick}
-                characters={soldiers}
-              />
-            </div>
-            <CharacterInfo currentCharacter={currentCharacter} />
-          </>
-        )}
+        <div className="character__options">
+          <CharacterList
+            variants={this.state}
+            handleClick={this.handleCharacterClick}
+            characters={soldiers}
+          />
+        </div>
+        <CharacterInfo currentCharacter={currentCharacter} />
         <button
           type="button"
           className="character__select-character"

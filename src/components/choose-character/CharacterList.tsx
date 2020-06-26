@@ -3,7 +3,8 @@ import React from 'react';
 import { v4 as uuid } from 'uuid';
 
 import Character from './Character';
-import characters from './characters';
+// import characters from '../characters';
+import characters from '../characters';
 
 const CharacterList = (props: any) => {
   const { variants, handleClick } = props;

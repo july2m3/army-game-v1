@@ -1,12 +1,12 @@
-import spearmanImage from '../../sprites/spearman.png';
-import bruteImage from '../../sprites/brute.png';
-import heavyInfantryImage from '../../sprites/heavy-infantry.png';
-import knightImage from '../../sprites/knight.png';
-import lightInfantryImage from '../../sprites/light-infantry.png';
-import pikemanImage from '../../sprites/pikeman.png';
-import scoutImage from '../../sprites/scout.png';
-import archerImage from '../../sprites/archer.png';
-import assassinImage from '../../sprites/assassin.png';
+import spearmanImage from '../sprites/spearman.png';
+import bruteImage from '../sprites/brute.png';
+import heavyInfantryImage from '../sprites/heavy-infantry.png';
+import knightImage from '../sprites/knight.png';
+import lightInfantryImage from '../sprites/light-infantry.png';
+import pikemanImage from '../sprites/pikeman.png';
+import scoutImage from '../sprites/scout.png';
+import archerImage from '../sprites/archer.png';
+import assassinImage from '../sprites/assassin.png';
 
 const characters = [
   {
