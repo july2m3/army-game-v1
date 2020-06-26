@@ -2,6 +2,8 @@ import React from 'react';
 
 import characters from '../characters';
 import CharacterInfo from './CharacterInfo';
+import Soldier from '../../game-functions/Soldier';
+
 import './style.scss';
 
 const Battle = (props: any) => {
@@ -12,6 +14,40 @@ const Battle = (props: any) => {
   if (Object.keys(player).length === 0 || Object.keys(enemy).length === 0) {
     return null;
   }
+
+  const beginBattle = () => {
+    console.log('beginning battle');
+
+    const player = new Soldier(
+      playerCharacter.attack,
+      playerCharacter.hp,
+      playerCharacter.accuracy,
+      'Player',
+    );
+
+    const enemy = new Soldier(
+      enemyCharacter.attack,
+      enemyCharacter.hp,
+      enemyCharacter.accuracy,
+      'Enemy',
+    );
+
+    let turn = 1;
+
+    while (player.isAlive && enemy.isAlive) {
+      console.log(`Turn ${turn} start.`);
+      if (player.isAlive) {
+        player.attackEnemy(enemy);
+      }
+      if (enemy.isAlive) {
+        enemy.attackEnemy(player);
+      }
+      turn++;
+    }
+
+    const winner = player.isAlive ? player.name : enemy.name;
+    console.log(`The winner is ${winner}🎉!`);
+  };
 
   const mapNameToImg = () => {
     const playerImage = characters.filter(
@@ -43,7 +79,7 @@ const Battle = (props: any) => {
             <img src={enemyCharacter.image} alt="none" />
           )}
         </div>
-        <button className="battle__button" type="button">
+        <button className="battle__button" type="button" onClick={beginBattle}>
           Start Round
         </button>
       </div>

@@ -49,8 +49,6 @@ class ChooseCharacter extends React.Component<IProps, IState> {
   }
 
   handleCharacterClick = (characterClicked: any) => {
-    // e.preventDefault();
-
     switch (characterClicked) {
       case 'Brute':
         this.setState((prevState) => ({
