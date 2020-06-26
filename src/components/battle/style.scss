@@ -1,5 +1,5 @@
-$hpPlayer: 30%;
-$hpEnemyCalculated: calc(100% - 30%);
+$hpPlayer: 100%;
+$hpEnemyCalculated: calc(100% - 100%);
 
 .battle {
   background: url('../../sprites/stage.jpeg');
