@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/army-game-v1/precache-manifest.deb7e97db60fd21237521d6584b8f81c.js"
+  "/army-game-v1/precache-manifest.2343c322290ae7dbe3d5a320c080abfc.js"
 );
 
 self.addEventListener('message', (event) => {
