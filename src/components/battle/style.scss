@@ -1,3 +1,6 @@
+$hpPlayer: 30%;
+$hpEnemyCalculated: calc(100% - 30%);
+
 .battle {
   background: url('../../sprites/stage.jpeg');
   background-size: cover;
@@ -6,6 +9,7 @@
   .battle__title {
     font-family: fantasy;
     position: absolute;
+    height: 200px;
     top: 200px;
     width: 100%;
     text-align: center;
@@ -23,14 +27,36 @@
 
     & > .character-info:first-of-type {
       text-align: left;
+
+      .character-info__name {
+        clip-path: polygon(0 0, $hpPlayer 0, $hpPlayer 100%, 0% 100%);
+      }
     }
 
     .character-info {
       margin: 40px;
-      background-color: green;
+      position: relative;
+      // background-color: green;
       width: 45%;
       border-radius: 10px;
-      border: 1px solid white;
+      position: relative;
+      height: 100%;
+
+      .character-info__name {
+        margin: 1rem;
+        font-size: 2rem;
+        z-index: -1;
+        padding: 1rem;
+        background-color: green;
+        border: 4px solid black;
+        border-radius: 1rem;
+        clip-path: polygon(
+          $hpEnemyCalculated 0%,
+          100% 0,
+          100% 100%,
+          $hpEnemyCalculated 100%
+        );
+      }
     }
 
     ul {
