@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import * as uuid from 'uuid';
 
 Modal.setAppElement('body');
 
@@ -13,7 +14,12 @@ const customStyles = {
 };
 
 const MyMessage = (props: any) => {
-  const { modalIsOpen, closeModal, message } = props;
+  const { modalIsOpen, closeModal, message, logs } = props;
+  console.log(logs);
+  const battleLogs = logs.map((currentLog: any) => (
+    <p key={uuid.v4()}>{currentLog}</p>
+  ));
+
   return (
     <Modal
       // className="battle__modal"
@@ -27,6 +33,7 @@ const MyMessage = (props: any) => {
         🅧
       </button>
       <h1>{message}</h1>
+      {battleLogs}
     </Modal>
   );
 };

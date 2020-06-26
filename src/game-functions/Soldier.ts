@@ -13,30 +13,43 @@ class Soldier {
     this.isAlive = true;
   }
 
-  attackEnemy = (enemy: Soldier) => {
+  attackEnemy = (enemy: Soldier, previousLog = ['']) => {
+    let log = [...previousLog];
+
     if (this !== enemy) {
-      const attackRole = Math.random() * 100;
+      let attackRole = Math.random() * 100;
       if (attackRole <= this.accuracy) {
         enemy.hp -= this.attack;
         console.log(
           `${this.name} hit ${enemy.name}. ${enemy.name} now has ${enemy.hp}hp`,
         );
+        log = [
+          ...log,
+          `${this.name} hit ${enemy.name}. ${enemy.name} now has ${enemy.hp}hp`,
+        ];
       } else {
         console.log(`${this.name} missed!`);
+        log = [...log, `${this.name} missed!`];
       }
 
       enemy.isAlive = enemy.hp >= 0 ? true : false;
       if (enemy.isAlive) {
-        const attackRole = Math.random() * 100;
+        attackRole = Math.random() * 100;
         if (attackRole <= enemy.accuracy) {
           this.hp -= enemy.attack;
           console.log(
             `${enemy.name} hit ${this.name}. ${this.name} now has ${this.hp}hp`,
           );
+          log = [
+            ...log,
+            `${enemy.name} hit ${this.name}. ${this.name} now has ${this.hp}hp`,
+          ];
         }
       }
       this.isAlive = this.hp >= 0 ? true : false;
     }
+
+    return log;
   };
 }
 

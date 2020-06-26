@@ -9,6 +9,9 @@ import './style.scss';
 
 const Battle = (props: any) => {
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  let log = ['Battle Log'];
+  const [modalLog, setModalLog] = React.useState(['No battle log']);
+
   const openModal = () => {
     setIsOpen(true);
   };
@@ -23,7 +26,8 @@ const Battle = (props: any) => {
   }
 
   const beginBattle = () => {
-    console.log('beginning battle');
+    // console.log('beginning battle');
+    log = [...log, 'Beginning battle'];
 
     const player = new Soldier(
       playerCharacter.attack,
@@ -43,19 +47,24 @@ const Battle = (props: any) => {
 
     while (player.isAlive && enemy.isAlive) {
       console.log(`Turn ${turn} start.`);
+      log = [...log, `Turn ${turn} start.`];
+
       if (player.isAlive) {
-        player.attackEnemy(enemy);
+        log = [...player.attackEnemy(enemy, log)];
       }
       if (enemy.isAlive) {
-        enemy.attackEnemy(player);
+        log = [...enemy.attackEnemy(player, log)];
       }
+
       console.log(`Turn ${turn} end.`);
+      log = [...log, `Turn ${turn} end.`];
       turn++;
     }
 
     // message = player.isAlive ? 'You won!!🎉' : 'Enemy won...';
     setMessage(player.isAlive ? 'You won!!🎉' : 'Enemy won...');
-    console.log(message);
+    console.log(log);
+    setModalLog(log);
     openModal();
   };
 
@@ -101,6 +110,7 @@ const Battle = (props: any) => {
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           message={message}
+          logs={modalLog}
         />
       </div>
     </>
