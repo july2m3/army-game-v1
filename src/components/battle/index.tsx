@@ -3,13 +3,19 @@ import React from 'react';
 import characters from '../characters';
 import CharacterInfo from './CharacterInfo';
 import Soldier from '../../game-functions/Soldier';
+import MyMessage from './MyMessage';
 
 import './style.scss';
 
 const Battle = (props: any) => {
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const openModal = () => {
+    setIsOpen(true);
+  };
   const { player, enemy } = props;
   const playerCharacter = player;
   const enemyCharacter = enemy;
+  let message = 'You lost...';
 
   if (Object.keys(player).length === 0 || Object.keys(enemy).length === 0) {
     return null;
@@ -42,11 +48,13 @@ const Battle = (props: any) => {
       if (enemy.isAlive) {
         enemy.attackEnemy(player);
       }
+      console.log(`Turn ${turn} end.`);
       turn++;
     }
 
-    const winner = player.isAlive ? player.name : enemy.name;
-    console.log(`The winner is ${winner}🎉!`);
+    message = player.isAlive ? 'You won!!🎉' : 'Enemy won...';
+    console.log(message);
+    openModal();
   };
 
   const mapNameToImg = () => {
@@ -62,6 +70,10 @@ const Battle = (props: any) => {
   };
 
   mapNameToImg();
+
+  const closeModal = () => {
+    setIsOpen(false);
+  };
 
   return (
     <>
@@ -82,9 +94,14 @@ const Battle = (props: any) => {
         <button className="battle__button" type="button" onClick={beginBattle}>
           Start Round
         </button>
+
+        <MyMessage
+          modalIsOpen={modalIsOpen}
+          closeModal={closeModal}
+          message={message}
+        />
       </div>
     </>
   );
 };
-
 export default Battle;
