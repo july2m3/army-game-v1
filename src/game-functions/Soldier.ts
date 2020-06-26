@@ -15,10 +15,25 @@ class Soldier {
 
   attackEnemy = (enemy: Soldier) => {
     if (this !== enemy) {
-      enemy.hp -= this.attack;
+      const attackRole = Math.random() * 100;
+      if (attackRole <= this.accuracy) {
+        enemy.hp -= this.attack;
+        console.log(
+          `${this.name} hit ${enemy.name}. ${enemy.name} now has ${enemy.hp}hp`,
+        );
+      } else {
+        console.log(`${this.name} missed!`);
+      }
+
       enemy.isAlive = enemy.hp >= 0 ? true : false;
       if (enemy.isAlive) {
-        this.hp -= enemy.attack;
+        const attackRole = Math.random() * 100;
+        if (attackRole <= enemy.accuracy) {
+          this.hp -= enemy.attack;
+          console.log(
+            `${enemy.name} hit ${this.name}. ${this.name} now has ${this.hp}hp`,
+          );
+        }
       }
       this.isAlive = this.hp >= 0 ? true : false;
     }

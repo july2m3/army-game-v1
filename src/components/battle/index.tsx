@@ -15,7 +15,8 @@ const Battle = (props: any) => {
   const { player, enemy } = props;
   const playerCharacter = player;
   const enemyCharacter = enemy;
-  let message = 'You lost...';
+  // let message = 'You win...';
+  const [message, setMessage] = React.useState('You ddljk');
 
   if (Object.keys(player).length === 0 || Object.keys(enemy).length === 0) {
     return null;
@@ -52,7 +53,8 @@ const Battle = (props: any) => {
       turn++;
     }
 
-    message = player.isAlive ? 'You won!!🎉' : 'Enemy won...';
+    // message = player.isAlive ? 'You won!!🎉' : 'Enemy won...';
+    setMessage(player.isAlive ? 'You won!!🎉' : 'Enemy won...');
     console.log(message);
     openModal();
   };
