@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f99265ce316a63153e9dfe034f813c5b",
+    "revision": "c7d79d014ee557ea9120649a53d3e65d",
     "url": "/army-game-v1/index.html"
   },
   {
-    "revision": "5aabceca25b2aa58c20d",
-    "url": "/army-game-v1/static/css/main.fbf7780c.chunk.css"
+    "revision": "5789902285fe71802728",
+    "url": "/army-game-v1/static/css/main.c81b2c2f.chunk.css"
   },
   {
     "revision": "3b299579221ff5e5fbc0",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/army-game-v1/static/js/2.9874f848.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "5aabceca25b2aa58c20d",
-    "url": "/army-game-v1/static/js/main.f0f98675.chunk.js"
+    "revision": "5789902285fe71802728",
+    "url": "/army-game-v1/static/js/main.148cce64.chunk.js"
   },
   {
     "revision": "db2f0c9f795fcd198348",
