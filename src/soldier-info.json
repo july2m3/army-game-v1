@@ -65,17 +65,18 @@
     },
     {
       "name": "Assassin",
-      "accuracy": 100,
-      "attack": 10,
+      "accuracy": 40,
+      "attack": 64,
       "attackRange": 2,
+      "numberOfAttacks": 2,
       "cost": 20,
       "hp": 23,
       "movement": 4
     },
     {
       "name": "Archer",
-      "accuracy": 77,
-      "attack": 13,
+      "accuracy": 70,
+      "attack": 5,
       "attackRange": 2,
       "cost": 20,
       "hp": 21,

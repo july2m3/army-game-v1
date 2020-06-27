@@ -1,8 +1,8 @@
-$hpPlayer: 100%;
-$hpEnemyCalculated: calc(100% - 100%);
+$hpPlayer: 60%;
+$hpEnemyCalculated: calc(100% - 20%);
 
 --root {
-  --playerhp: 100%;
+  --playerhp: 60%;
 }
 
 .battle {

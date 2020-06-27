@@ -45,6 +45,7 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     const randomEnemyNumber = Math.floor(Math.random() * 6);
     this.setState((prevState) => ({
       enemyCharacter: prevState.soldiers[randomEnemyNumber],
+      // enemyCharacter: prevState.soldiers[0], //0 is against brute
     }));
   }
 

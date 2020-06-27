@@ -62,8 +62,7 @@ const Battle = (props: any) => {
     }
 
     // message = player.isAlive ? 'You won!!🎉' : 'Enemy won...';
-    setMessage(player.isAlive ? 'You won!!🎉' : 'Enemy won...');
-    console.log(log);
+    setMessage(player.isAlive ? 'You won!!🎉' : 'You noob, you lost 😭');
     setModalLog(log);
     openModal();
   };
