@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 import characters from '../characters';
 import CharacterInfo from './CharacterInfo';
@@ -8,57 +8,59 @@ import MyMessage from './MyMessage';
 import './style.scss';
 
 const Battle = (props: any) => {
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  let log = ['Battle Log'];
-  const [modalLog, setModalLog] = React.useState(['No battle log']);
-
-  const openModal = () => {
-    setIsOpen(true);
-  };
-  const { player, enemy } = props;
-  const playerCharacter = player;
-  const enemyCharacter = enemy;
-  // let message = 'You win...';
-  const [message, setMessage] = React.useState('You ddljk');
+  const { playerInfoFromProps, enemyInfoFromProps } = props;
+  const player = playerInfoFromProps;
+  const enemey = enemyInfoFromProps;
 
   if (Object.keys(player).length === 0 || Object.keys(enemy).length === 0) {
     return null;
   }
+  // upon init
+
+  // let log = ['Battle Log'];
+  const [log, setLog] = useState(['Battle log']);
+  const [message, setMessage] = useState("You didn't battle");
+  const [turn, setTurn] = useState(1);
+  const player = new Soldier(
+    playerCharacter.attack,
+    playerCharacter.hp,
+    playerCharacter.accuracy,
+    'Player',
+  );
+  const enemy = new Soldier(
+    enemyCharacter.attack,
+    enemyCharacter.hp,
+    enemyCharacter.accuracy,
+    'Enemy',
+  );
+
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [modalLog, setModalLog] = React.useState(['No battle log']);
+  const openModal = () => {
+    setIsOpen(true);
+  };
 
   const beginBattle = () => {
-    // console.log('beginning battle');
-    log = [...log, 'Beginning battle'];
-
-    const player = new Soldier(
-      playerCharacter.attack,
-      playerCharacter.hp,
-      playerCharacter.accuracy,
-      'Player',
-    );
-
-    const enemy = new Soldier(
-      enemyCharacter.attack,
-      enemyCharacter.hp,
-      enemyCharacter.accuracy,
-      'Enemy',
-    );
-
-    let turn = 1;
+    // log = [...log, 'Beginning battle'];
+    setLog([...log, 'Beginning battle']);
 
     while (player.isAlive && enemy.isAlive) {
-      console.log(`Turn ${turn} start.`);
-      log = [...log, `Turn ${turn} start.`];
+      // console.log(`Turn ${turn} start.`);
+      // log = [...log, `Turn ${turn} start.`];
+      setLog([...log, `Turn ${turn} start.`]);
 
       if (player.isAlive) {
-        log = [...player.attackEnemy(enemy, log)];
+        // log = [...player.attackEnemy(enemy, log)];
+        setLog([...player.attackEnemy(enemy, log)]);
       }
       if (enemy.isAlive) {
-        log = [...enemy.attackEnemy(player, log)];
+        // log = [...enemy.attackEnemy(player, log)];
+        setLog([...enemy.attackEnemy(player, log)]);
       }
 
-      console.log(`Turn ${turn} end.`);
-      log = [...log, `Turn ${turn} end.`];
-      turn++;
+      // log = [...log, `Turn ${turn} end.`];
+      setLog([...log, `Turn ${turn} end.`]);
+      setTurn(turn + 1);
     }
 
     // message = player.isAlive ? 'You won!!🎉' : 'Enemy won...';
