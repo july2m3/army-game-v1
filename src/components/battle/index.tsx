@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 import characters from '../characters';
 import CharacterInfo from './CharacterInfo';
@@ -94,7 +94,7 @@ const Battle = (props: any) => {
           <CharacterInfo currentCharacter={enemy} />
         </div>
         <div className="battle__images">
-          {enemy.image && <img src={enemy.image} alt="none" />}
+          {player.image && <img src={player.image} alt="none" />}
           {enemy.image && <img src={enemy.image} alt="none" />}
         </div>
         <button className="battle__button" type="button" onClick={beginBattle}>

@@ -15,7 +15,6 @@ const customStyles = {
 
 const MyMessage = (props: any) => {
   const { modalIsOpen, closeModal, message, logs } = props;
-  console.log(logs);
   const battleLogs = logs.map((currentLog: any) => (
     <p key={uuid.v4()}>{currentLog}</p>
   ));
