@@ -1,9 +1,9 @@
-$hpPlayer: 60%;
-$hpEnemyCalculated: calc(100% - 20%);
+// $hpPlayer: 60%;
+// $hpEnemyCalculated: calc(100% - 20%);
 
---root {
-  --playerhp: 60%;
-}
+// :root {
+//   --playerHp: 60%;
+// }
 
 .battle {
   background: url('../../sprites/stage.jpeg');
@@ -36,8 +36,8 @@ $hpEnemyCalculated: calc(100% - 20%);
         // clip-path: polygon(0 0, $hpPlayer 0, $hpPlayer 100%, 0% 100%);
         clip-path: polygon(
           0 0,
-          var(--playerhp) 0,
-          var(--playerhp) 100%,
+          var(--playerHpBar) 0,
+          var(--playerHpBar) 100%,
           0% 100%
         );
       }
@@ -60,11 +60,18 @@ $hpEnemyCalculated: calc(100% - 20%);
         background-color: green;
         border: 4px solid black;
         border-radius: 1rem;
+        // clip-path: polygon(
+        //   $hpEnemyCalculated 0%,
+        //   100% 0,
+        //   100% 100%,
+        //   $hpEnemyCalculated 100%
+        // );
+
         clip-path: polygon(
-          $hpEnemyCalculated 0%,
+          calc(100% - var(--enemyHpBar)) 0%,
           100% 0,
           100% 100%,
-          $hpEnemyCalculated 100%
+          calc(100% - var(--enemyHpBar)) 100%
         );
       }
     }

@@ -9,12 +9,12 @@ import './style.scss';
 
 const Battle = (props: any) => {
   const { player, enemy } = props;
-  // const playerCharacter = playerInfoFromProps;
-  // const enemyCharacter = enemyInfoFromProps;
-
   const [log, setLog] = useState(['Battle log']);
   const [message, setMessage] = useState("You didn't battle");
   const [turn, setTurn] = useState(1);
+  const [playerHpBar, setPlayerHpBar] = useState(100);
+  const [enemyHpBar, setEnemyHpBar] = useState(100);
+
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [modalLog, setModalLog] = React.useState(['No battle log']);
   const openModal = () => {
@@ -87,6 +87,14 @@ const Battle = (props: any) => {
 
   return (
     <>
+      <style>
+        {`
+            :root {
+              --playerHpBar: ${playerHpBar}%;
+              --enemyHpBar: ${enemyHpBar}%;
+              }
+            `}
+      </style>
       <div className="battle">
         <h1 className="battle__title">Fight!!</h1>
         <div className="battle__info">
