@@ -17,45 +17,23 @@ class Soldier {
     let log = [...previousLog];
 
     if (this !== enemy) {
-      let attackRole = Math.random() * 100;
+      const attackRole = Math.random() * 100;
+
+      // If attack hit
       if (attackRole <= this.accuracy) {
         enemy.hp -= this.attack;
-        console.log(
-          `${this.name} hit ${enemy.name}. ${enemy.name} now has ${enemy.hp}hp`,
-        );
         log = [
           ...log,
           `${this.name} hit ${enemy.name}. ${enemy.name} now has ${enemy.hp}hp`,
         ];
+        // check if enemy died in battle
+        enemy.isAlive = enemy.hp > 0;
       } else {
-        console.log(`${this.name} missed!`);
+        // else if attack missed
         log = [...log, `${this.name} missed!`];
       }
-
-      enemy.isAlive = enemy.hp > 0;
-
-      if (enemy.isAlive) {
-        attackRole = Math.random() * 100;
-        if (attackRole <= enemy.accuracy) {
-          this.hp -= enemy.attack;
-          console.log(
-            `${enemy.name} hit ${this.name}. ${this.name} now has ${this.hp}hp`,
-          );
-          log = [
-            ...log,
-            `${enemy.name} hit ${this.name}. ${this.name} now has ${this.hp}hp`,
-          ];
-        } else {
-          console.log(`${enemy.name} missed!`);
-          log = [...log, `${enemy.name} missed!`];
-        }
-      }
-
-      this.isAlive = this.hp > 0;
     }
-
     return log;
   };
 }
-
 export default Soldier;

@@ -101,11 +101,7 @@ class ChooseCharacter extends React.Component<IProps, IState> {
     }
   };
 
-  getRandomEnemy = () => {
-    // let randomEnemyNumber = 2;
-  };
-
-  ddd = () => {
+  handleSelectCharacter = () => {
     const { currentCharacter, enemyCharacter } = this.state;
     const { handlePlayerChoice } = this.props;
     handlePlayerChoice(currentCharacter, enemyCharacter);
@@ -132,7 +128,7 @@ class ChooseCharacter extends React.Component<IProps, IState> {
         <button
           type="button"
           className="character__select-character"
-          onClick={this.ddd}
+          onClick={this.handleSelectCharacter}
         >
           Choose Character
         </button>

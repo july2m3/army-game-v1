@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 
 import characters from '../characters';
 import CharacterInfo from './CharacterInfo';
@@ -12,17 +13,35 @@ const Battle = (props: any) => {
 
   const [log, setLog] = useState(['']);
   const [message, setMessage] = useState("You didn't battle");
-  const [turn, setTurn] = useState(1);
+  const [buttonMessage, setButtonMessage] = useState('Begin Battle');
 
+  const [buttonCanBePressed, setButtonCanBePressed] = useState(true);
+  const [playerAttacking, setPlayerAttacking] = useState(false);
+  const [enemyAttacking, setEnemyAttacking] = useState(false);
   const [playerHpBar, setPlayerHpBar] = useState(100);
   const [enemyHpBar, setEnemyHpBar] = useState(100);
   const [playerHp, setPlayerHp] = useState(player.hp);
   const [enemyHp, setEnemyHp] = useState(enemy.hp);
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  // const [modalLog, setModalLog] = useState(['No battle log']);
   const openModal = () => {
     setIsOpen(true);
+  };
+
+  // player Attack, move player, update hp for soldiers
+  const movePlayer = () => {
+    setPlayerAttacking(true);
+    setTimeout(() => {
+      setPlayerAttacking(false);
+    }, 600);
+  };
+
+  // enemy attack, move enemy, update hp for soldiers
+  const moveEnemy = () => {
+    setEnemyAttacking(true);
+    setTimeout(() => {
+      setEnemyAttacking(false);
+    }, 600);
   };
 
   const beginBattle = () => {
@@ -40,29 +59,47 @@ const Battle = (props: any) => {
     );
 
     if (playerSoldier.isAlive && enemySoldier.isAlive) {
+      // disable button while battle sequence stars
+      setButtonCanBePressed(false);
       let currentLog = [...log];
 
       if (playerSoldier.isAlive) {
         currentLog = [...playerSoldier.attackEnemy(enemySoldier, currentLog)];
       }
+
       if (enemySoldier.isAlive) {
         currentLog = [...enemySoldier.attackEnemy(playerSoldier, currentLog)];
       }
 
-      setPlayerHpBar(Math.floor((playerSoldier.hp / player.hp) * 100));
+      currentLog = [...currentLog, `Turn ${buttonMessage} end.`];
+      setLog([...currentLog]);
+
+      // battle sequence!!
+      movePlayer();
+      setEnemyHp(enemySoldier.hp);
       setEnemyHpBar(Math.floor((enemySoldier.hp / enemy.hp) * 100));
 
-      currentLog = [...currentLog, `Turn ${turn} end.`];
-      setLog([...currentLog]);
-      setTurn(turn + 1);
-      setPlayerHp(playerSoldier.hp);
-      setEnemyHp(enemySoldier.hp);
-
-      if (!playerSoldier.isAlive || !enemySoldier.isAlive) {
-        setMessage(playerSoldier.isAlive ? 'You won!!🎉' : 'You lost 😭');
-        // setModalLog(log);
-        openModal();
+      // after player's turn, do enemy's turn
+      if (enemySoldier.isAlive) {
+        setTimeout(() => {
+          moveEnemy();
+          setPlayerHp(playerSoldier.hp);
+          setPlayerHpBar(Math.floor((playerSoldier.hp / player.hp) * 100));
+        }, 600);
       }
+
+      // update battle stats after enemy's turn
+      setTimeout(() => {
+        // if battle over, display log
+        if (!playerSoldier.isAlive || !enemySoldier.isAlive) {
+          setButtonMessage('Battle is over!');
+          setMessage(playerSoldier.isAlive ? 'You won!!🎉' : 'You lost 😭');
+          openModal();
+        } else {
+          //  otherwise allow battle to continue
+          setButtonCanBePressed(true);
+        }
+      }, 1200);
     }
   };
 
@@ -101,14 +138,42 @@ const Battle = (props: any) => {
           <CharacterInfo currentCharacter={enemy} />
         </div>
         <div className="battle__images">
-          {player.image && <img src={player.image} alt="none" />}
-          {enemy.image && <img src={enemy.image} alt="none" />}
+          {player.image && !playerAttacking && (
+            <img src={player.image} alt="none" />
+          )}
+          {player.image && playerAttacking && (
+            <motion.img
+              initial={{ x: 0, scaleX: -1 }}
+              src={player.image}
+              alt="none"
+              animate={{ x: 400, scaleX: -1 }}
+              transition={{ duration: 0.5 }}
+            />
+          )}
+
+          {enemy.image && !enemyAttacking && (
+            <img src={enemy.image} alt="none" />
+          )}
+          {enemy.image && enemyAttacking && (
+            <motion.img
+              initial={{ x: 0 }}
+              src={enemy.image}
+              alt="none"
+              animate={{ x: -400 }}
+              transition={{ duration: 0.5 }}
+            />
+          )}
         </div>
-        <button className="battle__button" type="button" onClick={beginBattle}>
+        <button
+          className="battle__button"
+          type="button"
+          onClick={beginBattle}
+          disabled={!buttonCanBePressed}
+        >
           <span className="dragon" role="img" aria-label="dragon">
             🐉
           </span>{' '}
-          Start Round {turn}
+          {buttonMessage}
         </button>
 
         <MyMessage
