@@ -10,7 +10,7 @@ import './style.scss';
 const Battle = (props: any) => {
   const { player, enemy } = props;
 
-  const [log, setLog] = useState(['Battle log']);
+  const [log, setLog] = useState(['']);
   const [message, setMessage] = useState("You didn't battle");
   const [turn, setTurn] = useState(1);
 
@@ -20,7 +20,7 @@ const Battle = (props: any) => {
   const [enemyHp, setEnemyHp] = useState(enemy.hp);
 
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [modalLog, setModalLog] = useState(['No battle log']);
+  // const [modalLog, setModalLog] = useState(['No battle log']);
   const openModal = () => {
     setIsOpen(true);
   };
@@ -59,10 +59,8 @@ const Battle = (props: any) => {
       setEnemyHp(enemySoldier.hp);
 
       if (!playerSoldier.isAlive || !enemySoldier.isAlive) {
-        setMessage(
-          playerSoldier.isAlive ? 'You won!!🎉' : 'You noob, you lost 😭',
-        );
-        setModalLog(log);
+        setMessage(playerSoldier.isAlive ? 'You won!!🎉' : 'You lost 😭');
+        // setModalLog(log);
         openModal();
       }
     }
