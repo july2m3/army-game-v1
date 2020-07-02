@@ -1,10 +1,3 @@
-// $hpPlayer: 60%;
-// $hpEnemyCalculated: calc(100% - 20%);
-
-// :root {
-//   --playerHp: 60%;
-// }
-
 .battle {
   background: url('../../sprites/stage.jpeg');
   background-size: cover;
@@ -60,13 +53,6 @@
         background-color: green;
         border: 4px solid black;
         border-radius: 1rem;
-        // clip-path: polygon(
-        //   $hpEnemyCalculated 0%,
-        //   100% 0,
-        //   100% 100%,
-        //   $hpEnemyCalculated 100%
-        // );
-
         clip-path: polygon(
           calc(100% - var(--enemyHpBar)) 0%,
           100% 0,
@@ -93,16 +79,16 @@
     img {
       position: absolute;
       bottom: 10px;
-      width: 300px;
+      width: 40vw;
       transform: scaleX(1);
 
       &:first-child {
-        left: 20%;
+        left: 5%;
         transform: scaleX(-1);
       }
 
       &:nth-child(2) {
-        right: 20%;
+        right: 5%;
       }
     }
   }
@@ -140,6 +126,34 @@
     transform: translate(-50%, -50%);
     p {
       color: blue;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .character-info__name {
+      font-size: 0.5rem;
+    }
+
+    .battle__images {
+      img {
+        bottom: 10px;
+        width: 60vw;
+
+        &:first-child {
+          left: 0%;
+        }
+
+        &:nth-child(2) {
+          right: 0%;
+        }
+      }
+    }
+    .battle__button {
+      bottom: 200px;
+      text-align: center;
+      .dragon {
+        float: left;
+      }
     }
   }
 }

@@ -146,7 +146,7 @@ const Battle = (props: any) => {
               initial={{ x: 0, scaleX: -1 }}
               src={player.image}
               alt="none"
-              animate={{ x: 400, scaleX: -1 }}
+              animate={{ x: 'calc(100vw - 50vw)', scaleX: -1 }}
               transition={{ duration: 0.5 }}
             />
           )}
@@ -159,7 +159,7 @@ const Battle = (props: any) => {
               initial={{ x: 0 }}
               src={enemy.image}
               alt="none"
-              animate={{ x: -400 }}
+              animate={{ x: 'calc(50vw - 100vw)' }}
               transition={{ duration: 0.5 }}
             />
           )}
