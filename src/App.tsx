@@ -14,7 +14,7 @@ class App extends React.Component<IProps, IState> {
   constructor(props: IProps) {
     super(props);
     this.state = {
-      currentCharacter: {},
+      currentCharacter: null,
       enemyCharacter: {},
     };
   }
@@ -27,7 +27,9 @@ class App extends React.Component<IProps, IState> {
     return (
       <>
         <ChooseCharacter handlePlayerChoice={this.playerSelectedCharacter} />
-        <Battle player={currentCharacter} enemy={enemyCharacter} />
+        {currentCharacter && (
+          <Battle player={currentCharacter} enemy={enemyCharacter} />
+        )}
       </>
     );
   }

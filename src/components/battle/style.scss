@@ -114,6 +114,17 @@
     bottom: 10px;
     left: 50%;
     transform: translate(-50%, -50%);
+    background-color: #696969;
+    color: whitesmoke;
+    border: 1px solid black;
+
+    .dragon {
+      border: 1px solid green;
+      padding: 5px;
+      background-color: #333333;
+      border-radius: 50%;
+      font-size: 2rem;
+    }
   }
 
   .battle__modal {

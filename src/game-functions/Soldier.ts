@@ -10,7 +10,7 @@ class Soldier {
     this.attack = attack >= 1 ? attack : 1;
     this.hp = hp > 0 ? hp : 1;
     this.accuracy = accuracy < 0 ? 1 : accuracy > 100 ? 100 : accuracy;
-    this.isAlive = true;
+    this.isAlive = hp > 0;
   }
 
   attackEnemy = (enemy: Soldier, previousLog = ['']) => {
@@ -32,7 +32,8 @@ class Soldier {
         log = [...log, `${this.name} missed!`];
       }
 
-      enemy.isAlive = enemy.hp >= 0 ? true : false;
+      enemy.isAlive = enemy.hp > 0;
+
       if (enemy.isAlive) {
         attackRole = Math.random() * 100;
         if (attackRole <= enemy.accuracy) {
@@ -44,9 +45,13 @@ class Soldier {
             ...log,
             `${enemy.name} hit ${this.name}. ${this.name} now has ${this.hp}hp`,
           ];
+        } else {
+          console.log(`${enemy.name} missed!`);
+          log = [...log, `${enemy.name} missed!`];
         }
       }
-      this.isAlive = this.hp >= 0 ? true : false;
+
+      this.isAlive = this.hp > 0;
     }
 
     return log;

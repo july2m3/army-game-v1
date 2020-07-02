@@ -9,62 +9,63 @@ import './style.scss';
 
 const Battle = (props: any) => {
   const { player, enemy } = props;
+
   const [log, setLog] = useState(['Battle log']);
   const [message, setMessage] = useState("You didn't battle");
   const [turn, setTurn] = useState(1);
+
   const [playerHpBar, setPlayerHpBar] = useState(100);
   const [enemyHpBar, setEnemyHpBar] = useState(100);
+  const [playerHp, setPlayerHp] = useState(player.hp);
+  const [enemyHp, setEnemyHp] = useState(enemy.hp);
 
-  const [modalIsOpen, setIsOpen] = React.useState(false);
-  const [modalLog, setModalLog] = React.useState(['No battle log']);
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalLog, setModalLog] = useState(['No battle log']);
   const openModal = () => {
     setIsOpen(true);
   };
 
-  if (
-    player === undefined ||
-    enemy === undefined ||
-    Object.keys(player).length === 0 ||
-    Object.keys(enemy).length === 0
-  ) {
-    return null;
-  }
-
-  // upon init
-  const playerSoldier = new Soldier(
-    player.attack,
-    player.hp,
-    player.accuracy,
-    'Player',
-  );
-  const enemySoldier = new Soldier(
-    enemy.attack,
-    enemy.hp,
-    enemy.accuracy,
-    'Enemy',
-  );
-
   const beginBattle = () => {
-    // log = [...log, 'Beginning battle'];
-    setLog([...log, 'Beginning battle']);
+    const playerSoldier = new Soldier(
+      player.attack,
+      playerHp,
+      player.accuracy,
+      'Player',
+    );
+    const enemySoldier = new Soldier(
+      enemy.attack,
+      enemyHp,
+      enemy.accuracy,
+      'Enemy',
+    );
 
-    while (playerSoldier.isAlive && enemySoldier.isAlive) {
-      setLog([...log, `Turn ${turn} start.`]);
+    if (playerSoldier.isAlive && enemySoldier.isAlive) {
+      let currentLog = [...log];
 
       if (playerSoldier.isAlive) {
-        setLog([...playerSoldier.attackEnemy(enemySoldier, log)]);
+        currentLog = [...playerSoldier.attackEnemy(enemySoldier, currentLog)];
       }
       if (enemySoldier.isAlive) {
-        setLog([...enemySoldier.attackEnemy(playerSoldier, log)]);
+        currentLog = [...enemySoldier.attackEnemy(playerSoldier, currentLog)];
       }
 
-      setLog([...log, `Turn ${turn} end.`]);
-      setTurn(turn + 1);
-    }
+      setPlayerHpBar(Math.floor((playerSoldier.hp / player.hp) * 100));
+      setEnemyHpBar(Math.floor((enemySoldier.hp / enemy.hp) * 100));
 
-    setMessage(playerSoldier.isAlive ? 'You won!!🎉' : 'You noob, you lost 😭');
-    setModalLog(log);
-    openModal();
+      currentLog = [...currentLog, `Turn ${turn} end.`];
+      setLog([...currentLog]);
+      setTurn(turn + 1);
+      setPlayerHp(playerSoldier.hp);
+      setEnemyHp(enemySoldier.hp);
+
+      if (!playerSoldier.isAlive || !enemySoldier.isAlive) {
+        setMessage(
+          playerSoldier.isAlive ? 'You won!!🎉' : 'You noob, you lost 😭',
+        );
+        setModalLog(log);
+        openModal();
+      }
+    }
   };
 
   const mapNameToImg = () => {
@@ -79,11 +80,11 @@ const Battle = (props: any) => {
     enemy.image = enemyImage[0].characterImage;
   };
 
-  mapNameToImg();
-
   const closeModal = () => {
     setIsOpen(false);
   };
+
+  mapNameToImg();
 
   return (
     <>
@@ -106,14 +107,17 @@ const Battle = (props: any) => {
           {enemy.image && <img src={enemy.image} alt="none" />}
         </div>
         <button className="battle__button" type="button" onClick={beginBattle}>
-          Start Round
+          <span className="dragon" role="img" aria-label="dragon">
+            🐉
+          </span>{' '}
+          Start Round {turn}
         </button>
 
         <MyMessage
           modalIsOpen={modalIsOpen}
           closeModal={closeModal}
           message={message}
-          logs={modalLog}
+          logs={log}
         />
       </div>
     </>
