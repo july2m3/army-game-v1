@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/army-game-v1/static/css/main.c81b2c2f.chunk.css",
-    "main.js": "/army-game-v1/static/js/main.148cce64.chunk.js",
-    "main.js.map": "/army-game-v1/static/js/main.148cce64.chunk.js.map",
+    "main.css": "/army-game-v1/static/css/main.203f3ca1.chunk.css",
+    "main.js": "/army-game-v1/static/js/main.d539d5af.chunk.js",
+    "main.js.map": "/army-game-v1/static/js/main.d539d5af.chunk.js.map",
     "runtime-main.js": "/army-game-v1/static/js/runtime-main.3a89b12a.js",
     "runtime-main.js.map": "/army-game-v1/static/js/runtime-main.3a89b12a.js.map",
-    "static/js/2.9874f848.chunk.js": "/army-game-v1/static/js/2.9874f848.chunk.js",
-    "static/js/2.9874f848.chunk.js.map": "/army-game-v1/static/js/2.9874f848.chunk.js.map",
+    "static/js/2.13c923b8.chunk.js": "/army-game-v1/static/js/2.13c923b8.chunk.js",
+    "static/js/2.13c923b8.chunk.js.map": "/army-game-v1/static/js/2.13c923b8.chunk.js.map",
     "index.html": "/army-game-v1/index.html",
-    "precache-manifest.0329bd88e8d32385cded14fc428bddcf.js": "/army-game-v1/precache-manifest.0329bd88e8d32385cded14fc428bddcf.js",
+    "precache-manifest.aa73bd2ec2c83ec0f8c9cf4096eb7bd9.js": "/army-game-v1/precache-manifest.aa73bd2ec2c83ec0f8c9cf4096eb7bd9.js",
     "service-worker.js": "/army-game-v1/service-worker.js",
-    "static/css/main.c81b2c2f.chunk.css.map": "/army-game-v1/static/css/main.c81b2c2f.chunk.css.map",
-    "static/js/2.9874f848.chunk.js.LICENSE.txt": "/army-game-v1/static/js/2.9874f848.chunk.js.LICENSE.txt",
+    "static/css/main.203f3ca1.chunk.css.map": "/army-game-v1/static/css/main.203f3ca1.chunk.css.map",
+    "static/js/2.13c923b8.chunk.js.LICENSE.txt": "/army-game-v1/static/js/2.13c923b8.chunk.js.LICENSE.txt",
     "static/media/style.scss": "/army-game-v1/static/media/stage.adc77528.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.3a89b12a.js",
-    "static/js/2.9874f848.chunk.js",
-    "static/css/main.c81b2c2f.chunk.css",
-    "static/js/main.148cce64.chunk.js"
+    "static/js/2.13c923b8.chunk.js",
+    "static/css/main.203f3ca1.chunk.css",
+    "static/js/main.d539d5af.chunk.js"
   ]
 }
