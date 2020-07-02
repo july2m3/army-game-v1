@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/army-game-v1/static/css/main.15ab2e26.chunk.css",
-    "main.js": "/army-game-v1/static/js/main.54157bed.chunk.js",
-    "main.js.map": "/army-game-v1/static/js/main.54157bed.chunk.js.map",
+    "main.css": "/army-game-v1/static/css/main.82e0b3cf.chunk.css",
+    "main.js": "/army-game-v1/static/js/main.635bad6a.chunk.js",
+    "main.js.map": "/army-game-v1/static/js/main.635bad6a.chunk.js.map",
     "runtime-main.js": "/army-game-v1/static/js/runtime-main.3a89b12a.js",
     "runtime-main.js.map": "/army-game-v1/static/js/runtime-main.3a89b12a.js.map",
     "static/js/2.8f085606.chunk.js": "/army-game-v1/static/js/2.8f085606.chunk.js",
     "static/js/2.8f085606.chunk.js.map": "/army-game-v1/static/js/2.8f085606.chunk.js.map",
     "index.html": "/army-game-v1/index.html",
-    "precache-manifest.3f40c39535f5a7edb16f37d48a07bfbb.js": "/army-game-v1/precache-manifest.3f40c39535f5a7edb16f37d48a07bfbb.js",
+    "precache-manifest.b2bdf8a5718ecd74dbcd41f8377a748f.js": "/army-game-v1/precache-manifest.b2bdf8a5718ecd74dbcd41f8377a748f.js",
     "service-worker.js": "/army-game-v1/service-worker.js",
-    "static/css/main.15ab2e26.chunk.css.map": "/army-game-v1/static/css/main.15ab2e26.chunk.css.map",
+    "static/css/main.82e0b3cf.chunk.css.map": "/army-game-v1/static/css/main.82e0b3cf.chunk.css.map",
     "static/js/2.8f085606.chunk.js.LICENSE.txt": "/army-game-v1/static/js/2.8f085606.chunk.js.LICENSE.txt",
     "static/media/style.scss": "/army-game-v1/static/media/stage.adc77528.jpeg"
   },
   "entrypoints": [
     "static/js/runtime-main.3a89b12a.js",
     "static/js/2.8f085606.chunk.js",
-    "static/css/main.15ab2e26.chunk.css",
-    "static/js/main.54157bed.chunk.js"
+    "static/css/main.82e0b3cf.chunk.css",
+    "static/js/main.635bad6a.chunk.js"
   ]
 }
