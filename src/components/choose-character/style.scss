@@ -1,4 +1,5 @@
 .character {
+  margin-top: 0;
   height: 100vh;
   width: 100%;
   text-align: center;
@@ -6,17 +7,20 @@
   .character__title {
     font-size: 4rem;
     margin-top: 10vh;
+    color: black;
   }
 
   .character__sub-title {
     color: blue;
     margin-top: 5vh;
     font-size: 2rem;
+    color: black;
   }
 
   .character__options {
     height: 40vh;
     width: 100%;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,8 +34,10 @@
   }
 
   .character__character-info {
-    margin-top: 50px;
     min-height: 20px;
+    color: black;
+    // color: rgba(250, 250, 250, 0.6);
+
     ul {
       list-style-type: none;
       display: flex;
@@ -51,8 +57,11 @@
     margin-top: 20px;
     font-size: 2rem;
     padding: 2rem;
+    background-color: #333333;
+    color: #ffffff;
+
     &:hover {
-      background-color: #fff;
+      text-decoration: underline;
     }
   }
 }
